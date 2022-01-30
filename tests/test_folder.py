@@ -193,3 +193,21 @@ def test_get_folder_components() -> None:
                 ),
             ),
         )
+
+
+def test_sisense_navver_different_response() -> None:
+    navver_response: dict[str, Any] = {
+        "oid": None,
+        "name": "root",
+        "dashboards": [
+            {"title": "Dashboard 1", "oid": "60325079939fb3002dac33b8", "parentFolder": None, "shares": []},
+            {"title": "Dashboard 2", "oid": "60325079939fb3002dac33b9", "parentFolder": None, "shares": []},
+        ],
+        "folders": [],
+    }
+    available_folders = Folder.parse_obj(navver_response)
+
+    with pytest.raises(Exception, match="Unexpected folder structure"):
+        get_folder_components(
+            available_folders, DashboardSummary(title="Dashboard 1", oid="60325079939fb3002dac33b8", parent_folder=None)
+        )
