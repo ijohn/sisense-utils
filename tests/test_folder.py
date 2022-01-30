@@ -195,7 +195,7 @@ def test_get_folder_components() -> None:
         )
 
 
-def test_sisense_navver_different_response() -> None:
+def test_sisense_navver_unexpected_resp() -> None:
     navver_response: dict[str, Any] = {
         "oid": None,
         "name": "root",
