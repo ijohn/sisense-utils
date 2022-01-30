@@ -28,6 +28,7 @@ jobs:
           isort .
           black .
           flake8 .
+          pylint sisense_utils
           mypy --explicit-package-bases --namespace-packages .
           bandit -r -s B101 -q .
       - name: Run tests
