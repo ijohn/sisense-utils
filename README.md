@@ -9,6 +9,7 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![mypy: checked](https://img.shields.io/badge/mypy-checked-green)](http://mypy-lang.org)
+[![codecov](https://codecov.io/gh/ijohn/sisense-utils/branch/main/graph/badge.svg?token=10omjXPdVs)](https://codecov.io/gh/ijohn/sisense-utils)
 
 `sisense-utils` is a collection of utilities I create when working with [Sisense](https://www.sisense.com/).
 
