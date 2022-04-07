@@ -10,6 +10,10 @@ repos:
       - id: check-yaml
       - id: requirements-txt-fixer
       - id: detect-private-key
+  - repo: https://github.com/snok/pep585-upgrade
+    rev: v1.0.1
+    hooks:
+      - id: upgrade-type-hints
   - repo: local
     hooks:
       - id: pyupgrade
@@ -46,7 +50,7 @@ repos:
       - id: mypy
         name: mypy
         language: python
-        entry: mypy --strict --explicit-package-bases --namespace-packages .
+        entry: mypy .
         types: [python]
         pass_filenames: false
       - id: bandit

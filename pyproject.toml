@@ -23,9 +23,13 @@ omit = [
 directory = "htmlcov"
 
 [tool.mypy]
+mypy_path = "."
 ignore_missing_imports = true
 install_types = true
 non_interactive = true
+namespace_packages = true
+explicit_package_bases = true
+strict = true
 
 [tool.pylint.master]
 init-hook = "import sys; sys.path.append(\".\")"
