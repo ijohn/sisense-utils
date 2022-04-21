@@ -113,69 +113,54 @@ def test_get_folder_components() -> None:
         )
         == []
     )
-    assert (
-        get_folder_components(
-            available_folders,
-            DashboardSummary(
-                title="Dashboard 3",
-                oid="60325079939fb3002dac33bA",
-                parent_folder=ParentFolder(oid="61bf63774f8f42003700b317", name="Test Folder", parent_id=None),
+    assert get_folder_components(
+        available_folders,
+        DashboardSummary(
+            title="Dashboard 3",
+            oid="60325079939fb3002dac33bA",
+            parent_folder=ParentFolder(oid="61bf63774f8f42003700b317", name="Test Folder", parent_id=None),
+        ),
+    ) == ["Test Folder"]
+    assert get_folder_components(
+        available_folders,
+        DashboardSummary(
+            title="Dashboard 4",
+            oid="60325079939fb3002dac33bB",
+            parent_folder=ParentFolder(
+                oid="61bf63774f8f42003700b319", name="Child Folder", parent_id="61bf63774f8f42003700b318"
             ),
-        )
-        == ["Test Folder"]
-    )
-    assert (
-        get_folder_components(
-            available_folders,
-            DashboardSummary(
-                title="Dashboard 4",
-                oid="60325079939fb3002dac33bB",
-                parent_folder=ParentFolder(
-                    oid="61bf63774f8f42003700b319", name="Child Folder", parent_id="61bf63774f8f42003700b318"
-                ),
+        ),
+    ) == ["Another Folder", "Child Folder"]
+    assert get_folder_components(
+        available_folders,
+        DashboardSummary(
+            title="Dashboard 5",
+            oid="60325079939fb3002dac33bC",
+            parent_folder=ParentFolder(
+                oid="61bf63774f8f42003700b320", name="Grandchild Folder", parent_id="61bf63774f8f42003700b319"
             ),
-        )
-        == ["Another Folder", "Child Folder"]
-    )
-    assert (
-        get_folder_components(
-            available_folders,
-            DashboardSummary(
-                title="Dashboard 5",
-                oid="60325079939fb3002dac33bC",
-                parent_folder=ParentFolder(
-                    oid="61bf63774f8f42003700b320", name="Grandchild Folder", parent_id="61bf63774f8f42003700b319"
-                ),
+        ),
+    ) == ["Another Folder", "Child Folder", "Grandchild Folder"]
+    assert get_folder_components(
+        available_folders,
+        DashboardSummary(
+            title="Dashboard 8",
+            oid="60325079939fb3002dac33bF",
+            parent_folder=ParentFolder(
+                oid="61bf63774f8f42003700b324", name="Sibling Child Folder", parent_id="61bf63774f8f42003700b318"
             ),
-        )
-        == ["Another Folder", "Child Folder", "Grandchild Folder"]
-    )
-    assert (
-        get_folder_components(
-            available_folders,
-            DashboardSummary(
-                title="Dashboard 8",
-                oid="60325079939fb3002dac33bF",
-                parent_folder=ParentFolder(
-                    oid="61bf63774f8f42003700b324", name="Sibling Child Folder", parent_id="61bf63774f8f42003700b318"
-                ),
+        ),
+    ) == ["Another Folder", "Sibling Child Folder"]
+    assert get_folder_components(
+        available_folders,
+        DashboardSummary(
+            title="Dashboard 6",
+            oid="60325079939fb3002dac33bD",
+            parent_folder=ParentFolder(
+                oid="61bf63774f8f42003700b323", name="Secret Child Folder", parent_id="61bf63774f8f42003700b322"
             ),
-        )
-        == ["Another Folder", "Sibling Child Folder"]
-    )
-    assert (
-        get_folder_components(
-            available_folders,
-            DashboardSummary(
-                title="Dashboard 6",
-                oid="60325079939fb3002dac33bD",
-                parent_folder=ParentFolder(
-                    oid="61bf63774f8f42003700b323", name="Secret Child Folder", parent_id="61bf63774f8f42003700b322"
-                ),
-            ),
-        )
-        == ["Secret Folder", "Secret Child Folder"]
-    )
+        ),
+    ) == ["Secret Folder", "Secret Child Folder"]
 
     with pytest.raises(Exception, match="Dashboard with oid 60325079939fb3002dac33b7 not found in folder structure"):
         get_folder_components(
