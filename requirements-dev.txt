@@ -8,4 +8,4 @@ mypy==0.950
 pre-commit==2.19.0
 pylint==2.13.8
 pytest==7.1.2
-pyupgrade==2.32.0
+pyupgrade==2.32.1
